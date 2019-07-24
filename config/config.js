@@ -1,12 +1,36 @@
 export default {
-    singular:true,
+  singular: true,
     plugins: [
         ['umi-plugin-react', {
-          // 这里暂时还没有添加配置，该插件还不会有作用，我们会在后面的课程按照需求打开相应的配置
-        }],
-      ],
-    routes: [{
+            //umi-plugin-react插件配置 详情-》https://umijs.org/zh/plugin/umi-plugin-react.html#%E5%AE%89%E8%A3%85
+            antd: true,
+            dva: true,
+        }]
+    ],
+  routes: [{
+    path: '/',
+    component: '../layout',
+    routes: [
+      {
+        path: '/puzzlecards',
+        component: './puzzlecards'
+      },
+      {
         path: '/',
-        component: './HelloWorld',
-      }],
-}
+        component: 'Helloworld',
+      },
+      {
+        path: '/helloworld',
+        component: 'Helloworld'
+      },
+      {
+        path: '/dashboard',
+        routes: [
+          { path: '/dashboard/analysis', component: 'Dashboard/Analysis' },
+          { path: '/dashboard/monitor', component: 'Dashboard/Monitor' },
+          { path: '/dashboard/workplace', component: 'Dashboard/Workplace' },
+        ]
+      },
+    ]
+  }],
+};
