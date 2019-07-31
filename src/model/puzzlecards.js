@@ -15,9 +15,12 @@ export default {
   effects: {
     *queryInitCards(_, sagaEffects) {
       const { call, put } = sagaEffects;
-      const endPointURI = 'http://jsonplaceholder.typicode.com/';
+      const endPointURI = '/dev/random_joke';
 
+      //put 和 yield 配合使用，用来派发一个 action
+      //获取服务端数据。
       const puzzle = yield call(request, endPointURI);
+      // 添加一个卡片数据。这个会触发 reducer 的执行
       yield put({ type: 'addNewCard', payload: puzzle });
 
       yield call(delay, 3000);
